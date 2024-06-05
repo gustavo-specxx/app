@@ -1,0 +1,39 @@
+package gs._ano.app.controller;
+
+import gs._ano.app.entity.SistemaAlerta;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import gs._ano.app.repository.SistemaAlertaRepository;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/sistema-alertas")
+@Tag(name = "Sistema de Alerta Controller", description = "Operações relacionadas ao sistema de alertas")
+public class SistemaAlertaController {
+
+    private final SistemaAlertaRepository sistemaAlertaRepository;
+
+    public SistemaAlertaController(SistemaAlertaRepository sistemaAlertaRepository) {
+        this.sistemaAlertaRepository = sistemaAlertaRepository;
+    }
+
+    @GetMapping
+    @Operation(summary = "Lista todos os alertas")
+    public List<SistemaAlerta> listarAlertas() {
+        return sistemaAlertaRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Obtém um alerta pelo ID")
+    public ResponseEntity<SistemaAlerta> obterAlertaPorId(@PathVariable Integer id) {
+        return sistemaAlertaRepository.findById(id)
+                .map(alerta -> ResponseEntity.ok().body(alerta))
+                .orElse(ResponseEntity.notFound().build());
+    }
+}
