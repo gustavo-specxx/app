@@ -1,7 +1,7 @@
 package gs._ano.app.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "TB_USUARIO")
@@ -16,7 +16,8 @@ public class Usuario {
     private String nomeUsuario;
 
     @Column(name = "data_nascimento_usuario")
-    private LocalDate dataNascimentoUsuario;  // Usando LocalDate
+    @Temporal(TemporalType.DATE)
+    private Date dataNascimentoUsuario;
 
     @Column(name = "localizacao_usuario", length = 100)
     private String localizacaoUsuario;
@@ -38,11 +39,11 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public LocalDate getDataNascimentoUsuario() {
+    public Date getDataNascimentoUsuario() {
         return dataNascimentoUsuario;
     }
 
-    public void setDataNascimentoUsuario(LocalDate dataNascimentoUsuario) {
+    public void setDataNascimentoUsuario(Date dataNascimentoUsuario) {
         this.dataNascimentoUsuario = dataNascimentoUsuario;
     }
 
