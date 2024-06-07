@@ -48,6 +48,13 @@
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.5.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.microsoft.azure/azure-webapp-maven-plugin -->
+		<dependency>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>azure-webapp-maven-plugin</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+
 
 		<!-- Oracle JDBC Driver -->
 		<dependency>
@@ -83,6 +90,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<version>2.5.0</version>
+				<configuration>
+					<schemaVersion>v2</schemaVersion>
+					<resourceGroup>myResourceGroup</resourceGroup>
+					<appName>myAppName</appName>
+					<region>westus</region>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
