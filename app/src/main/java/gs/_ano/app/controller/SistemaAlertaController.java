@@ -24,13 +24,13 @@ public class SistemaAlertaController {
     }
 
     @GetMapping
-    @Operation(summary = "Lista todos os alertas")
+    @Operation(summary = "Listar todos os alertas em sua volta")
     public List<SistemaAlerta> listarAlertas() {
         return sistemaAlertaRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Obtém um alerta pelo ID")
+    @Operation(summary = "Obtém um alerta pelo ID para mais detalhes")
     public ResponseEntity<SistemaAlerta> obterAlertaPorId(@PathVariable Integer id) {
         return sistemaAlertaRepository.findById(id)
                 .map(alerta -> ResponseEntity.ok().body(alerta))

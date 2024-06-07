@@ -21,13 +21,13 @@ public class UsuarioController {
     }
 
     @GetMapping
-    @Operation(summary = "Lista todos os usuários")
+    @Operation(summary = "Lista todos os usuários do app")
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
     }
 
     @PostMapping
-    @Operation(summary = "Cria um novo usuário")
+    @Operation(summary = "Cadastro para novos usuários")
     public Usuario criarUsuario(@RequestBody Usuario usuario) {
         return usuarioRepository.save(usuario);
     }

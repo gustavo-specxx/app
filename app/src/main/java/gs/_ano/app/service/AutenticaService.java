@@ -37,4 +37,13 @@ public class AutenticaService {
     public Optional<Autentica> findByEmail(String email) {
         return autenticaRepository.findByEmail(email);
     }
+
+    public boolean verifyCredentials(String email, String senha) {
+        Optional<Autentica> autenticaOptional = autenticaRepository.findByEmail(email);
+        if (autenticaOptional.isPresent()) {
+            Autentica autentica = autenticaOptional.get();
+            return passwordEncoder.matches(senha, autentica.getSenhaUsuario());
+        }
+        return false;
+    }
 }

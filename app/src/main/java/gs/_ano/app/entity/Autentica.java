@@ -3,40 +3,39 @@ package gs._ano.app.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "TB_AUTENTICA") // Confirme se o nome da tabela está correto
+@Table(name = "tb_autentica")
 public class Autentica {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_autentica_seq")
+    @SequenceGenerator(name = "tb_autentica_seq", sequenceName = "tb_autentica_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "email") // Verifique se o nome da coluna está correto
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "senha_usuario") // Verifique se o nome da coluna está correto
+    @Column(name = "senha_usuario", nullable = false)
     private String senhaUsuario;
 
-    // Getters
+    // Getters e Setters
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getSenhaUsuario() {
-        return senhaUsuario;
-    }
-
-    // Setters
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenhaUsuario() {
+        return senhaUsuario;
     }
 
     public void setSenhaUsuario(String senhaUsuario) {
